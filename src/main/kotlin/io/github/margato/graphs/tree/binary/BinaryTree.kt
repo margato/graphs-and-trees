@@ -48,16 +48,32 @@ class BinaryTree<T : Comparable<T>>(root: BinaryTreeNode<T>) : Tree<T>(root) {
     }
 
     private fun addRecursively(node: BinaryTreeNode<T>?, id: String, value: T) {
+        logger.trace {
+            "addRecursively - Value to add: $value - Current node: ${node!!.id} = ${node.value}"
+        }
+
         val comparingValue = node!!.value.compareTo(value)
 
         if (comparingValue < 0) {
             when (node.getRight() == null) {
-                true -> node.setRight(BinaryTreeNode(id, value))
+                true -> {
+                    node.setRight(BinaryTreeNode(id, value))
+                    logger.trace {
+                        "addRecursively - Value added to right: $value"
+                    }
+                }
+
                 false -> addRecursively(node.getRight(), id, value)
             }
         } else if (comparingValue > 0) {
             when (node.getLeft() == null) {
-                true -> node.setLeft(BinaryTreeNode(id, value))
+                true -> {
+                    node.setLeft(BinaryTreeNode(id, value))
+                    logger.trace {
+                        "addRecursively - Value added to left: $value"
+                    }
+                }
+
                 false -> addRecursively(node.getLeft(), id, value)
             }
         } else {
