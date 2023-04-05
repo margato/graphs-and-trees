@@ -1,9 +1,17 @@
 package io.github.margato.graphs.base
 
-abstract class Tree<T>(open val root: TreeNode<T>?) {
+import java.util.*
+
+abstract class Tree<T : Comparable<T>>(open val root: TreeNode<T>) {
     abstract fun numberOfNodes(): Int
-    abstract fun add(value: T)
-    abstract fun inOrderTraverse(fn: (value: T) -> Unit)
-    abstract fun postOrderTraverse(fn: (value: T) -> Unit)
-    abstract fun preOrderTraverse(fn: (value: T) -> Unit)
+    abstract fun add(id: String = UUID.randomUUID().toString(), value: T)
+    abstract fun findByValue(value: T): Optional<TreeNode<T>>
+    abstract fun inOrderTraverse(fn: (node: TreeNode<T>) -> Unit)
+    abstract fun postOrderTraverse(fn: (node: TreeNode<T>) -> Unit)
+    abstract fun preOrderTraverse(fn: (node: TreeNode<T>) -> Unit)
+
+    override fun toString(): String {
+        return "Tree(root=$root)"
+    }
+
 }

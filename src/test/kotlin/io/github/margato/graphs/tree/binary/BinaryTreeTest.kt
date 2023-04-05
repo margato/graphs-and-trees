@@ -16,7 +16,7 @@ class BinaryTreeTest : FunSpec({
         )
 
         tree.root
-            ?.setLeft(
+            .setLeft(
                 BinaryTreeNode(
                     id = UUID.randomUUID().toString(), value = 2
                 ).setLeft(
@@ -24,7 +24,7 @@ class BinaryTreeTest : FunSpec({
                         id = UUID.randomUUID().toString(), value = 1
                     )
                 )
-            )?.setRight(
+            ).setRight(
                 BinaryTreeNode(
                     id = UUID.randomUUID().toString(), value = 5
                 ).setLeft(
@@ -44,7 +44,7 @@ class BinaryTreeTest : FunSpec({
         val traversed = mutableListOf<Int>()
 
         tree.inOrderTraverse {
-            traversed.add(it)
+            traversed.add(it.value)
         }
 
         traversed shouldBe correctOrderTraversed
@@ -55,7 +55,7 @@ class BinaryTreeTest : FunSpec({
         val traversed = mutableListOf<Int>()
 
         tree.preOrderTraverse {
-            traversed.add(it)
+            traversed.add(it.value)
         }
 
         traversed shouldBe correctOrderTraversed
@@ -66,7 +66,7 @@ class BinaryTreeTest : FunSpec({
         val traversed = mutableListOf<Int>()
 
         tree.postOrderTraverse {
-            traversed.add(it)
+            traversed.add(it.value)
         }
 
         traversed shouldBe correctOrderTraversed
