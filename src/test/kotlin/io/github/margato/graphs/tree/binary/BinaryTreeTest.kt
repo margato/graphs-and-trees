@@ -72,4 +72,26 @@ class BinaryTreeTest : FunSpec({
         traversed shouldBe correctOrderTraversed
     }
 
+    test("should add correctly sorting by value") {
+        tree = BinaryTree(
+            BinaryTreeNode(
+                id = UUID.randomUUID().toString(), value = 3
+            )
+        )
+        tree.add(value=2)
+        tree.add(value=1)
+        tree.add(value=5)
+        tree.add(value=4)
+        tree.add(value=6)
+
+        val correctOrder = listOf(1, 2, 3, 4, 5, 6)
+        val traversed = mutableListOf<Int>()
+
+        tree.inOrderTraverse {
+            traversed.add(it.value)
+        }
+
+        traversed shouldBe correctOrder
+    }
+
 })
